@@ -1,0 +1,177 @@
+/* ---- PAGE BACKGROUND ---- */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at center, #0a1a24, #000911);
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ---- MAIN GRID ---- */
+.wrapper {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 420px auto;
+  gap: 25px;
+  width: 90%;
+  max-width: 1000px;
+}
+
+/* ---- GLASS EFFECT ---- */
+.glass {
+  backdrop-filter: blur(14px) saturate(140%);
+  -webkit-backdrop-filter: blur(14px) saturate(140%);
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card {
+  padding: 20px;
+  border-radius: 16px;
+  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2), 0 0 40px rgba(0, 255, 255, 0.1);
+}
+
+/* ---- HEADER ---- */
+header {
+  grid-column: 1 / 4;
+  text-align: center;
+  color: #e8faff;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 38px;
+  letter-spacing: 3px;
+  font-weight: 700;
+  color: #97e8ff;
+  text-shadow: 0 0 12px #37cdfa;
+}
+
+header .accent {
+  color: #37cdfa;
+}
+
+.subtitle {
+  font-size: 14px;
+  opacity: 0.7;
+}
+
+/* ---- GAME CANVAS ---- */
+.game-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  border-radius: 14px;
+  background: #111;
+  box-shadow:
+    0 0 20px rgba(0, 255, 255, 0.4),
+    inset 0 0 10px rgba(0, 255, 255, 0.15);
+}
+
+/* ---- RIGHT SIDEBAR ---- */
+.stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #b9f7ff;
+  min-width: 160px;
+}
+
+.stat {
+  display: flex;
+  justify-content: space-between;
+  font-size: 18px;
+  margin: 8px 0;
+}
+
+.label {
+  opacity: 0.7;
+}
+
+/* ---- DIVIDER ---- */
+.divider {
+  height: 1px;
+  margin: 20px 0;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ---- RESTART BUTTON ---- */
+.btn {
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  border: none;
+  font-size: 17px;
+  font-weight: 600;
+  background: linear-gradient(135deg, #00eaff, #007eff);
+  color: #01151a;
+  box-shadow: 0 0 12px #00eaff;
+  transition: 0.25s;
+}
+
+.btn:hover {
+  box-shadow: 0 0 20px #00eaff, 0 0 40px #00eaff;
+  transform: translateY(-2px);
+}
+
+/* ---- RESPONSIVE ---- */
+@media (max-width: 850px) {
+  .wrapper {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+  }
+
+  aside.stats {
+    order: 3;
+  }
+}
+
+/* ---- DIFFICULTY DROPDOWN ---- */
+.difficulty {
+  background: rgba(0, 255, 255, 0.12);
+  border: none;
+  border-radius: 8px;
+  padding: 6px 10px;
+  color: #b9f7ff;
+  font-size: 15px;
+  cursor: pointer;
+  outline: none;
+  box-shadow: inset 0 0 6px rgba(0, 255, 255, 0.2);
+}
+
+.difficulty option {
+  background: #02131c;
+  color: #b9f7ff;
+}
+
+
+.overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: rgba(5, 15, 20, 0.8);
+  backdrop-filter: blur(6px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 14px;
+  color: #c8f8ff;
+  text-align: center;
+}
+
+.overlay h2 {
+  font-size: 32px;
+  margin-bottom: 10px;
+  text-shadow: 0 0 10px #00eaff;
+}
+
+.hidden {
+  display: none !important;
+}
