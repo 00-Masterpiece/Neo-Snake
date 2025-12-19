@@ -79,21 +79,29 @@ document.addEventListener("keydown", (e) => {
 });
 
 // -------------------- TOUCH CONTROLS --------------------
-canvas.addEventListener(
+document.addEventListener(
   "touchstart",
   (e) => {
-    e.preventDefault();
+    if (!gameRunning) return;
+
     const touch = e.touches[0];
     touchStartX = touch.clientX;
     touchStartY = touch.clientY;
   },
+  { passive: true }
+);
+
+document.addEventListener(
+  "touchmove",
+  (e) => {
+    if (gameRunning) e.preventDefault();
+  },
   { passive: false }
 );
 
-canvas.addEventListener(
+document.addEventListener(
   "touchend",
   (e) => {
-    e.preventDefault();
     if (!gameRunning) return;
 
     const touch = e.changedTouches[0];
@@ -124,8 +132,9 @@ canvas.addEventListener(
       }
     }
   },
-  { passive: false }
+  { passive: true }
 );
+
 
 // -------------------- GAME LOGIC --------------------
 function spawnFood() {
