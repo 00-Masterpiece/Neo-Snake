@@ -51,7 +51,6 @@ difficultySelect.addEventListener("change", () => {
 startBtn.onclick = () => {
   startScreen.classList.add("hidden");
   gameRunning = true;
-  difficultySelect.disabled = true;
 };
 
 restartBtn2.onclick = restartGame;
@@ -60,7 +59,6 @@ function restartGame() {
   init();
   gameOverScreen.classList.add("hidden");
   gameRunning = true;
-  difficultySelect.disabled = true;
 }
 
 document.addEventListener("keydown", (e) => {
@@ -113,7 +111,6 @@ function update() {
 function endGame() {
   gameOver = true;
   gameRunning = false;
-  difficultySelect.disabled = false;
   finalScore.textContent = score;
   gameOverScreen.classList.remove("hidden");
 }
