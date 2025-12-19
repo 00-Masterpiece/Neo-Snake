@@ -20,6 +20,8 @@ let score, hue;
 let speed = 130; // slower default speed
 let gameRunning = false;
 let gameOver = false;
+let touchStartX = 0;
+let touchStartY = 0;
 
 function init() {
   snake = [{ x: 200, y: 200 }];
@@ -69,6 +71,42 @@ document.addEventListener("keydown", (e) => {
   if (e.key === "ArrowLeft" && dx === 0) (dx = -grid), (dy = 0);
   if (e.key === "ArrowRight" && dx === 0) (dx = grid), (dy = 0);
 });
+
+canvas.addEventListener("touchstart", (e) => {
+  const touch = e.touches[0];
+  touchStartX = touch.clientX;
+  touchStartY = touch.clientY;
+});
+
+canvas.addEventListener("touchend", (e) => {
+  if (!gameRunning) return;
+
+  const touch = e.changedTouches[0];
+  const dxTouch = touch.clientX - touchStartX;
+  const dyTouch = touch.clientY - touchStartY;
+
+  // Determine swipe direction
+  if (Math.abs(dxTouch) > Math.abs(dyTouch)) {
+    // Horizontal swipe
+    if (dxTouch > 0 && dx === 0) {
+      dx = grid;
+      dy = 0;
+    } else if (dxTouch < 0 && dx === 0) {
+      dx = -grid;
+      dy = 0;
+    }
+  } else {
+    // Vertical swipe
+    if (dyTouch > 0 && dy === 0) {
+      dy = grid;
+      dx = 0;
+    } else if (dyTouch < 0 && dy === 0) {
+      dy = -grid;
+      dx = 0;
+    }
+  }
+});
+
 
 function spawnFood() {
   return {
